@@ -1,0 +1,85 @@
+<app-menu></app-menu>
+
+<div class="page-container">
+
+    <div class="topic-name-container">
+        <h1 class="topic-name">{{topicName}}</h1>
+    </div>
+
+    <div class="header-container">
+
+        <div class="comment-add-container">
+            <button mat-raised-button type="button" color="primary" (click)="openModalAddComment()"
+                class="comment-add-button">
+                <mat-icon>add_comment</mat-icon><span class="comment-add-button-text">Dodaj komentar</span>
+            </button>
+        </div>
+
+        <div>
+            <mat-form-field class="topic-navigation-form-field">
+                <mat-label class="topic-navigation-label">Tema</mat-label>
+                <mat-select class="topic-navigation-select">
+                    @for (topic of topics; track topic.id) {
+                    <mat-option class="topic-navigation-option" [value]="topic.id"
+                        [routerLink]="['/forum/comment', topic.name, topic.id]">{{topic.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+    </div>
+
+    <div class="comment-container">
+
+        <div>
+            @for(comment of comments; track $index){
+            <div class="comment-card">
+                <div class="comment-user">
+                    <div class="comment-user-field-name">
+                        <img class="comment-image" [src]="comment.avatarUrl  || 'assets/avatars/0.png'" alt="Nema slike"
+                            width="40" height="40">
+                        <span>{{comment?.username}}</span>
+                    </div>
+                    <div class="comment-user-field">
+                        <span>Član od:</span>
+                        <span class="comment-user-field-value">{{comment?.accessDate}}</span>
+                    </div>
+                    <div class="comment-user-field">
+                        <span>Postovi:</span>
+                        <span class="comment-user-field-value">{{comment?.totalPosts}}</span>
+                    </div>
+                </div>
+                <div class="comment-content-container">
+                    <div class="comment-text-container">
+                        <span class="comment-text"> {{comment?.content}}
+                        </span>
+                    </div>
+                    <div class="comment-correction-container">
+                        @if( comment.correctionTime && comment.correctionUsername) {
+                        <span class="comment-correction">(komentar je uređen {{comment?.correctionTime | date: 'short'}}
+                            od strane {{comment?.correctionUsername}})</span>
+                        }
+                    </div>
+                </div>
+                <div class="comment-data-container">
+                    <div class="comment-time">
+                        <span>{{ formatDateTime(comment.postedTime).date }}</span>
+                        <span>{{ formatDateTime(comment.postedTime).time }}</span>
+                    </div>
+                    <div class="comment-action">
+                        <mat-icon (click)="openModalCorrectComment(comment.id, comment.username)"
+                            class="topic-action-icon" matTooltip="Uredi">edit</mat-icon>
+                        <mat-icon (click)="openModalDeleteComment(comment.id, comment.username)"
+                            class="topic-action-icon" matTooltip="Obriši">delete</mat-icon>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+
+        <mat-paginator class="comment-mat-paginator" [length]="totalElements" [pageSize]="numberOfElements"
+            [pageSizeOptions]="[3, 5, 10]" (page)="changePage($event)"></mat-paginator>
+
+    </div>
+
+</div>

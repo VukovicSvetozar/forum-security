@@ -1,0 +1,148 @@
+<mat-toolbar color="primary">
+
+    <mat-toolbar-row>
+
+        <span>
+            <img [src]="logoUrl" alt="nema slike" class="logo-image">
+        </span>
+
+        @if(largerScreen) {
+        <ng-container>
+            <a mat-button routerLink="/forum/home">
+                Početna
+            </a>
+        </ng-container>
+        }
+        @else {
+        <a mat-icon-button matTooltip="Početna" routerLink="/forum/home">
+            <mat-icon>home</mat-icon>
+        </a>
+        }
+
+        @if(largerScreen) {
+        <ng-container>
+            @if (loggedIn) {
+            <a mat-button routerLink="/forum/topic">
+                Forum
+            </a>
+            }
+        </ng-container>
+        }
+        @else if(loggedIn) {
+        <a mat-icon-button matTooltip="Forum" routerLink="/forum/topic">
+            <mat-icon>chat</mat-icon>
+        </a>
+        }
+
+        @if(largerScreen) {
+        <ng-container>
+            @if (loggedIn) {
+            <a mat-button routerLink="/user/member">
+                Članovi
+            </a>
+            }
+        </ng-container>
+        }
+        @else if(loggedIn) {
+        <a mat-icon-button matTooltip="Članovi" routerLink="/user/member">
+            <mat-icon>group</mat-icon>
+        </a>
+        }
+
+        @if(largerScreen) {
+        <ng-container>
+            @if (isAdmin){
+            <a mat-button routerLink="/admin/main">
+                Admin
+            </a>
+            }
+        </ng-container>
+        }
+        @else if(isAdmin) {
+        <a mat-icon-button matTooltip="Admin" routerLink="/admin/main">
+            <mat-icon>settings icon</mat-icon>
+        </a>
+        }
+
+        @if(largerScreen) {
+        <ng-container>
+            @if (isAdmin){
+            <a mat-button routerLink="/monitoring/review">
+                Monitoring
+            </a>
+            }
+        </ng-container>
+        }
+        @else if(isAdmin) {
+        <a mat-icon-button matTooltip="Monitoring" routerLink="/monitoring/review">
+            <mat-icon>security icon</mat-icon>
+        </a>
+        }
+
+        <span class="menu-spacer"></span>
+
+        @if(largerScreen) {
+        <ng-container>
+            @if (loggedIn){
+            <a mat-button routerLink="/user/profile">
+                Profil
+            </a>
+            }
+        </ng-container>
+        }
+        @else if(loggedIn) {
+        <a mat-icon-button matTooltip="Profil" routerLink="/user/profile">
+            <mat-icon>person</mat-icon>
+        </a>
+        }
+
+        @if(loggedIn) {
+        <div class="username-avatar-container">
+            @if(largerScreen) {
+            <div>
+                <strong class="username">{{username}}&nbsp;&nbsp;</strong>
+            </div>
+            }
+            <div>
+                <img [src]="avatarUrl || 'assets/avatars/0.png'" alt="nema slike" width="40" height="40"
+                    class="avatar-image">
+            </div>
+        </div>
+        }
+
+        @if(largerScreen && loggedIn) {
+        <button mat-button (click)="odjava()">
+            Odjava
+        </button>
+        }
+        @else if(loggedIn) {
+        <button mat-icon-button matTooltip="Odjava" (click)="odjava()">
+            <mat-icon>logout</mat-icon>
+        </button>
+        }
+
+        @if(largerScreen && !loggedIn) {
+        <a mat-button routerLink="/auth/login">
+            Prijava
+        </a>
+        }
+        @else if(!loggedIn) {
+        <a mat-icon-button matTooltip="Prijava" routerLink="/auth/login">
+            <mat-icon>login</mat-icon>
+        </a>
+        }
+
+        @if(largerScreen && !loggedIn) {
+        <a mat-button routerLink="/auth/registration">
+            Registracija
+        </a>
+        }
+        @else if(!loggedIn) {
+        <a mat-icon-button matTooltip="Registracija" routerLink="/auth/registration">
+            <mat-icon>person_add</mat-icon>
+        </a>
+        }
+
+    </mat-toolbar-row>
+
+</mat-toolbar>

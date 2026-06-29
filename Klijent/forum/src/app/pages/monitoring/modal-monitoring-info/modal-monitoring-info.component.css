@@ -1,0 +1,72 @@
+.monitoring-container {
+    background-color: #ddf5f5;
+}
+
+.title-container {
+    margin-top: 20px;
+}
+
+.title {
+    text-align: center;
+    font-weight: bold;
+    color: #205fa7;
+}
+
+.element-container {
+    width: 100%;
+}
+
+.card-header {
+    display: flex;
+    justify-content: center;
+}
+
+.card-title {
+    margin-bottom: 20px;
+}
+
+.card-content {
+    overflow-x: auto;
+}
+
+.card-content>p {
+    padding-left: 15px;
+}
+
+.error-message-title {
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.error-message-key {
+    font-weight: 550;
+    padding-left: 15px;
+}
+
+.error-message-text {
+    padding-left: 55px;
+}
+
+
+mat-dialog-actions {
+    display: flex;
+    justify-content: center;
+}
+
+
+button {
+    width: 80px;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    background-color: #228fce;
+    color: #fff;
+    border: 2px solid #1e90ff;
+    border-radius: 5px;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    border: 2px solid #2d68a3;
+}

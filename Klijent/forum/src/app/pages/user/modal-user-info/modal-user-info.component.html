@@ -1,0 +1,22 @@
+<h2>Profil korisnika</h2>
+<mat-dialog-content>
+    @if (userInfo) {
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar class="avatar" [ngStyle]="{'background-image': 'url(' + userInfo.avatarUrl + ')'}">
+            </div>
+            <mat-card-title>{{userInfo.username}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p><strong>Grupa:</strong> {{userInfo.group}}</p>
+            <p><strong>Email:</strong> {{userInfo.email}}</p>
+            <p><strong>Ukupno postova:</strong> {{userInfo.totalPosts}}</p>
+            <p><strong>Datum pristupa:</strong> {{userInfo.accessDate}}</p>
+            <p><strong>Poslednja poseta:</strong> {{userInfo.lastVisit}}</p>
+        </mat-card-content>
+    </mat-card>
+    }
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Zatvori</button>
+</mat-dialog-actions>

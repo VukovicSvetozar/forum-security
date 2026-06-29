@@ -1,0 +1,15 @@
+#avatar-container h1 {
+    text-align: center;
+}
+
+
+.selected-avatar {
+    transform: scale(1.5);
+}
+
+#avatar-button {
+    display: flex;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+}

@@ -1,0 +1,41 @@
+<app-menu></app-menu>
+
+<div class="topic-container">
+
+    <div id="page-title">
+        Teme
+    </div>
+
+    <div class="topic-element-container">
+
+        <table mat-table [dataSource]="dataSourceTopic" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef class="topic-table-header"> Naziv </th>
+                <td mat-cell *matCellDef="let element" class="topic-table-row-name"
+                    (click)="navigateToComments(element)">
+                    <img [src]="element.imageUrl || 'assets/topics/0.png'" alt="Nema slike" width="40" height="40"
+                        class="topic-image"> <span class="topic-name">{{element.name}}</span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="totalComments">
+                <th mat-header-cell *matHeaderCellDef class="topic-table-header"> Broj komentara </th>
+                <td mat-cell *matCellDef="let element" class="topic-table-row">
+                    <span class="topic-name">{{element.totalComments}}</span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lastCommentTime">
+                <th mat-header-cell *matHeaderCellDef class="topic-table-header"> Poslednji komentar</th>
+                <td mat-cell *matCellDef="let element" class="topic-table-row">
+                    <span class="topic-name">{{element.lastCommentTime | date: 'short' }}</span>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplayTopic"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsToDisplayTopic;"></tr>
+        </table>
+
+    </div>
+</div>

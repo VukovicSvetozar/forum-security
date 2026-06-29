@@ -1,0 +1,40 @@
+<div id="container">
+
+    <div id="page-title">
+        Verifikacija tajnog kljuca
+    </div>
+
+    <form [formGroup]="verificationForm" (ngSubmit)="verificationSecretCode()">
+
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Pin</mat-label>
+            <input matInput formControlName="secretCode" placeholder="000000" pattern="^\d{6}$" required>
+            <mat-icon matSuffix>vpn_key</mat-icon>
+            @if(verificationForm.get('secretCode')?.hasError('required') &&
+            verificationForm.get('secretCode')?.touched){
+            <mat-error>
+                Tajni kod je obavezan.
+            </mat-error>
+            }
+            @if(verificationForm.get('secretCode')?.hasError('pattern') && verificationForm.get('secretCode')?.touched){
+            <mat-error>
+                Potrebno je unijeti šestocifreni broj.
+            </mat-error>
+            }
+        </mat-form-field>
+
+        <div id="verification-button-container">
+            <button mat-raised-button color="accent" type="submit"
+                [disabled]="verificationForm.invalid">Verifikacija</button>
+        </div>
+
+        <div id="link-container">
+            <a mat-raised-button color="primary" routerLink="../../home"><mat-icon>home</mat-icon>
+                <strong>Početna</strong></a>&nbsp;
+            <a mat-raised-button color="primary" routerLink="../../auth/login"><mat-icon>login</mat-icon>
+                <strong>Prijava</strong></a>
+        </div>
+
+    </form>
+
+</div>

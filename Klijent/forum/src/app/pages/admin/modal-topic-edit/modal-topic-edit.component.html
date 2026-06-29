@@ -1,0 +1,58 @@
+<div id="topic-container">
+
+    <h2 id="title">Uredi temu</h2>
+
+    <form [formGroup]="topicForm" (ngSubmit)="createTopic()">
+        <div class="name-field-container">
+            <mat-form-field appearance="outline" class="name-field">
+                <mat-label>Naziv teme</mat-label>
+                <input matInput formControlName="topicName" placeholder="Naziv" pattern="^[a-zA-Z0-9_]*$" required
+                    minlength="3" maxlength="100" (keyup)="checkNameAvailability()">
+                <mat-icon matSuffix>create</mat-icon>
+                @if(topicForm.get('topicName')?.hasError('required') && topicForm.get('topicName')?.touched){
+                <mat-error>
+                    Naziv teme je obavezan!
+                </mat-error>
+                }
+                @if(topicForm.get('topicName')?.hasError('pattern') && topicForm.get('topicName')?.touched){
+                <mat-error>
+                    Naziv teme ne smije sadržavati specijalne karaktere.
+                </mat-error>
+                }
+                @if(topicForm.get('topicName')?.hasError('minlength') && topicForm.get('topicName')?.touched){
+                <mat-error>
+                    Naziv teme mora imati najmanje 3 karaktera.
+                </mat-error>
+                }
+                @if(topicForm.get('topicName')?.hasError('maxlength') && topicForm.get('topicName')?.touched){
+                <mat-error>
+                    Naziv teme može imati najviše 100 karaktera.
+                </mat-error>
+                }
+                @if(topicForm.get('topicName')?.hasError('topicNameNotAvailable') &&
+                topicForm.get('topicName')?.touched){
+                <mat-error>
+                    Naziv teme je već zauzet!
+                </mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <h3 id="title-image">Odaberite sliku</h3>
+        <mat-grid-list cols="6">
+            @for(image of listTopicImage; track $index) {
+            <mat-grid-tile (click)="selectImage(image)">
+                <img [src]="image" alt="Topic" width="50" height="50" class="topic-image"
+                    [ngClass]="{'selected-image': image === selectedImage}">
+            </mat-grid-tile>
+            }
+        </mat-grid-list>
+
+        <div id="topic-button-container" mat-dialog-actions>
+            <button type="button" mat-raised-button color="primary" (click)="cancel()">Odustani</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="topicForm.invalid">Uredi</button>
+        </div>
+
+    </form>
+
+</div>

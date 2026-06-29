@@ -1,0 +1,38 @@
+<div class="container">
+
+    <h2 mat-dialog-title class="title">Verifikacija korisnika</h2>
+
+    <mat-dialog-content>
+        <div>
+            <form [formGroup]="verificationForm" class="form-container">
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Verifikacija</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option value="approved">
+                            ODOBRENO
+                        </mat-option>
+                        <mat-option value="rejected">
+                            ODBIJENO
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Grupe</mat-label>
+                    <mat-select formControlName="group">
+                        @for(group of groupNames; track $index){
+                        <mat-option [value]="group">
+                            {{group}}
+                        </mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="button-container">
+        <button mat-button mat-dialog-close>Odustani</button>
+        <button mat-button cdkFocusInitial (click)="verifyUserAccount()" [disabled]="!verificationForm.valid">Potvrdi</button>
+    </mat-dialog-actions>
+
+</div>

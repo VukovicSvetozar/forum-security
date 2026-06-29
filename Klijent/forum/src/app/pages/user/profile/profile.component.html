@@ -1,0 +1,93 @@
+<app-menu></app-menu>
+
+<div class="page-container">
+
+    <div id="page-title">
+        Ažuriranje korisnika
+    </div>
+
+    <form [formGroup]="updateForm" (ngSubmit)="updateUser()">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Korisničko ime</mat-label>
+            <input readonly matInput formControlName="username" placeholder="Vuk" pattern="^[a-zA-Z0-9_]*$" required
+                minlength="3" maxlength="30">
+            <mat-icon matSuffix>account_circle</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Stara lozinka</mat-label>
+            <input matInput type="password" formControlName="oldPassword" minlength="8" #oldPasswordInput />
+            <mat-icon matSuffix (click)="changeVisibilityOldPassword(oldPasswordInput)">
+                {{ oldPasswordView ? 'lock' : 'visibility' }}
+            </mat-icon>
+            @if(updateForm.get('oldPassword')?.hasError('minlength') && updateForm.get('oldPassword')?.touched){
+            <mat-error>
+                Lozinka mora imati najmanje 8 karaktera.
+            </mat-error>
+            }
+            @if(updateForm.get('oldPassword')?.hasError('pattern') && updateForm.get('oldPassword')?.touched){
+            <mat-error>
+                Lozinka nije u skladu sa sigurnosnim zahtjevima.
+            </mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Nova lozinka</mat-label>
+            <input matInput type="password" formControlName="newPassword" minlength="8" #newPasswordInput />
+            <mat-icon matSuffix (click)="changeVisibilityNewPassword(newPasswordInput)">
+                {{ newPasswordView ? 'lock' : 'visibility' }}
+            </mat-icon>
+            @if(updateForm.get('newPassword')?.hasError('minlength') && updateForm.get('newPassword')?.touched){
+            <mat-error>
+                Lozinka mora imati najmanje 8 karaktera.
+            </mat-error>
+            }
+            @if(updateForm.get('newPassword')?.hasError('pattern') && updateForm.get('newPassword')?.touched){
+            <mat-error>
+                Lozinka nije u skladu sa sigurnosnim zahtjevima.
+            </mat-error>
+            }
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="sv@gmail.com" required maxlength="100" email
+                (keyup)="checkEmailAvailability()">
+            <mat-icon matSuffix>mail</mat-icon>
+            @if(updateForm.get('email')?.hasError('required') && updateForm.get('email')?.touched){
+            <mat-error>
+                Email je obavezan!
+            </mat-error>
+            }
+            @if(updateForm.get('email')?.hasError('email') && updateForm.get('email')?.touched){
+            <mat-error>
+                Email nije validan!
+            </mat-error>
+            }
+            @if(updateForm.get('email')?.hasError('emailNotAvailable') && updateForm.get('email')?.touched){
+            <mat-error>
+                Email je već zauzet!
+            </mat-error>
+            }
+        </mat-form-field>
+
+        <div id="avatar-container">
+            <div>
+                <span id="avatar-title">Avatar:&nbsp;&nbsp;</span>
+            </div>
+            <div id="avatar-button">
+                <img [src]="avatarUrl" alt="Odabrani Avatar" width="60" height="60">
+                <button mat-raised-button type="button" color="warn" (click)="openAvatarDialog()">Odaberi</button>
+            </div>
+        </div>
+
+        <div id="update-button-container">
+            <button mat-raised-button color="accent" type="submit" [disabled]="updateForm.invalid">Ažuriraj</button>
+        </div>
+
+    </form>
+
+</div>

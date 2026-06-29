@@ -1,0 +1,35 @@
+<div class="container">
+
+    <h2 mat-dialog-title class="title">Promjena permisija korisnika</h2>
+
+    <mat-dialog-content>
+        <div class="list-container" cdkDropListGroup>
+            <div class="element-container">
+                <h4>Dostupne permisije</h4>
+                <div cdkDropList [cdkDropListData]="availablePermissions" class="element-list"
+                    cdkDropListSortingDisabled (cdkDropListDropped)="drop($event)">
+                    @for (item of availablePermissions; track item) {
+                    <div class="element-box" cdkDrag><span>{{item}}</span></div>
+                    }
+                </div>
+            </div>
+
+            <div class="element-container">
+                <h4>Permisije korisnika</h4>
+                <div cdkDropList [cdkDropListData]="userPermissions" class="element-list"
+                    (cdkDropListDropped)="drop($event)">
+                    @for (item of userPermissions; track item) {
+                    <div class="element-box" cdkDrag>{{item}}</div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="button-container">
+        <button mat-button mat-dialog-close>Odustani</button>
+        <button mat-button cdkFocusInitial (click)="changePermissions()">Potvrdi</button>
+    </mat-dialog-actions>
+
+</div>

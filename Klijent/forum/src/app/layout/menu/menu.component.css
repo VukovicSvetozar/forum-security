@@ -1,0 +1,33 @@
+.logo-image {
+    margin-right: 35px;
+    margin-top: 10px;
+    border-radius: 10%;
+    width: 150px;
+    height: 50px;
+}
+
+.menu-spacer {
+    flex: 1 1 auto;
+}
+
+.username-avatar-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.username {
+    font-size: 17px;
+    color: rgb(92, 210, 208);
+    text-align: center;
+    padding: 0px 0px 35px 20px;
+    font-weight: bold;
+    font-style: italic;
+    line-height: 4.8;
+}
+
+.avatar-image {
+    margin-right: 10px;
+    border-radius: 50%;
+}

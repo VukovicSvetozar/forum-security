@@ -1,0 +1,45 @@
+<div class="comment-container">
+
+    <div class="title-container">
+        <h1 class="title">Dodavanje komentara</h1>
+    </div>
+
+    <div class="element-container">
+
+        <form [formGroup]="commentForm" (ngSubmit)="addComment()" class="form-container">
+
+            <mat-form-field appearance="outline" class="form-field">
+                <textarea matInput formControlName="content" placeholder="Unesite sadržaj..." required
+                    pattern="^[a-zA-Z0-9_ .,!?čćžđšČĆŽĐŠ\n\r]*$" minlength="3" maxlength="300" class="content-textarea"></textarea>
+                @if(commentForm.get('content')?.hasError('required') && commentForm.get('content')?.touched){
+                <mat-error>
+                    Sadržaj komentara je obavezan.
+                </mat-error>
+                }
+                @if(commentForm.get('content')?.hasError('minlength') && commentForm.get('content')?.touched){
+                <mat-error>
+                    Sadržaj komentara mora imati najmanje tri karaktera.
+                </mat-error>
+                }
+                @if(commentForm.get('content')?.hasError('maxlength') && commentForm.get('content')?.touched){
+                <mat-error>
+                    Sadržaj komentara može imati najviše 300 karaktera.
+                </mat-error>
+                }
+                @if(commentForm.get('content')?.hasError('pattern') && commentForm.get('content')?.touched){
+                <mat-error>
+                    Sadržaj nije u skladu sa sigurnosnim zahtjevima.
+                </mat-error>
+                }
+            </mat-form-field>
+
+            <div class="button-container" mat-dialog-actions>
+                <button mat-raised-button color="primary" type="button" (click)="cancel()">Odustani</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="commentForm.invalid">Dodaj</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

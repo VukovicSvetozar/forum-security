@@ -1,0 +1,39 @@
+h2 {
+    margin-top: 15px;
+    text-align: center;
+    color: rgb(101, 154, 235);
+}
+
+mat-card-title {
+    margin-top: 11px;
+}
+
+.avatar {
+    background-size: cover
+}
+
+mat-dialog-actions {
+    display: flex;
+    justify-content: center;
+}
+
+mat-card-content>p {
+    padding-left: 10px;
+}
+
+button {
+    width: 80px;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    background-color: #228fce;
+    color: #fff;
+    border: 2px solid #1e90ff;
+    border-radius: 5px;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    border: 2px solid #2d68a3;
+}

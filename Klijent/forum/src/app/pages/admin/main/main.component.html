@@ -1,0 +1,202 @@
+<app-menu></app-menu>
+
+<mat-sidenav-container id="container">
+
+    <mat-sidenav-content>
+
+        <mat-tab-group>
+
+            <mat-tab>
+
+                <ng-template mat-tab-label>
+                    <mat-icon class="tab-icon">group</mat-icon> Korisnici
+                </ng-template>
+
+                <div class="user-container">
+
+                    <div class="filter-user-container">
+                        <mat-accordion class="filter-user-accordion">
+                            <mat-expansion-panel class="filter-user-panel">
+                                <mat-expansion-panel-header class="filter-user-panel-header">
+                                    <mat-panel-title>
+                                        Filtriranje
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div>
+                                    <form [formGroup]="filterForm" (ngSubmit)="filterUsers()" class="filter-form">
+                                        <mat-form-field class="filter-form-field" appearance="outline">
+                                            <mat-label>Grupe</mat-label>
+                                            <mat-select formControlName="groupNames">
+                                                @for(group of groupNames; track $index){
+                                                <mat-option [value]="group">
+                                                    {{group}}
+                                                </mat-option>
+                                                }
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <mat-form-field class="filter-form-field" appearance="outline">
+                                            <mat-label>Statusi</mat-label>
+                                            <mat-select formControlName="statusNames">
+                                                @for(status of statusNames; track $index){
+                                                <mat-option [value]="status">
+                                                    {{status}}
+                                                </mat-option>
+                                                }
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <div class="filter-button-container">
+                                            <button mat-raised-button color="primary" type="reset"
+                                                (click)="resetForm()">Resetuj</button>
+                                            <button mat-raised-button color="primary" type="submit"
+                                                [disabled]="filterForm.invalid">Pretraži</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                        <mat-form-field class="search-users">
+                            <mat-label>Pretraga</mat-label>
+                            <input matInput (keyup)="searchUsers($event)" placeholder="..." #input>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="content-user-container">
+                        <table mat-table [dataSource]="dataSourceUser" multiTemplateDataRows
+                            class="content-user-table mat-elevation-z8">
+                            @for (column of columnsToDisplayUser; track column) {
+                            <ng-container matColumnDef="{{column}}">
+                                <th mat-header-cell *matHeaderCellDef class="user-table-header">
+                                    {{columnHeaders[column]}} </th>
+                                <td mat-cell *matCellDef="let element" class="user-table-row"> {{element[column]}} </td>
+                            </ng-container>
+                            }
+                            <ng-container matColumnDef="expand">
+                                <th mat-header-cell *matHeaderCellDef class="user-table-header-action"
+                                    aria-label="row actions">&nbsp;</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <button mat-icon-button aria-label="expand row"
+                                        (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+                                        @if (expandedElement === element) {
+                                        <mat-icon>keyboard_arrow_up</mat-icon>
+                                        } @else {
+                                        <mat-icon>keyboard_arrow_down</mat-icon>
+                                        }
+                                    </button>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="expandedDetail">
+                                <td mat-cell *matCellDef="let element"
+                                    [attr.colspan]="columnsToDisplayUserWithExpand.length">
+                                    <div class="user-element-detail"
+                                        [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                                        <div class="user-element-data-container">
+                                            <div class="user-element-data">
+                                                <img [src]="element.avatarUrl || 'assets/avatars/0.png'"
+                                                    alt="Nema slike" width="40" height="40" class="avatar-image">
+                                                <div class="user-element-description">
+                                                    <span class="user-element-description-attribution"> Email: </span>
+                                                    {{element.email}}
+                                                </div>
+                                            </div>
+                                            <div class="user-element-description">
+                                                <span class="user-element-description-attribution"> Pristup:
+                                                </span>
+                                                {{element.accessDate}}
+                                            </div>
+                                            <div class="user-element-description">
+                                                <span class="user-element-description-attribution"> Broj postova:
+                                                </span>
+                                                {{element.totalPosts}}
+                                            </div>
+                                        </div>
+                                        <div class="user-element-button-container">
+                                            <button mat-raised-button
+                                                [disabled]="element.status !== 'PENDING' && element.status !== 'OAUTH2' || element.status === 'DEACTIVATED'"
+                                                (click)="openModalVerificationUser(element.id)">Registracija</button>
+                                            <button mat-raised-button [disabled]="element.status !== 'APPROVED'"
+                                                (click)="openModalChangeUserGroup(element.id)">Promjena
+                                                grupe</button>
+                                            <button mat-raised-button [disabled]="element.status !== 'APPROVED'"
+                                                (click)="openModalChangePermissions(element.id, element.group)">Promjena
+                                                permisija</button>
+                                            <button mat-raised-button [disabled]="element.status !== 'APPROVED'"
+                                                (click)="openModalSuspendUser(element.id)">Suspenzija</button>
+                                            <button mat-raised-button [disabled]="element.status === 'DEACTIVATED'"
+                                                (click)="openModalDeactivateUser(element.username)">Brisanje
+                                                korisnika</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="columnsToDisplayUserWithExpand"></tr>
+                            <tr mat-row *matRowDef="let element; columns: columnsToDisplayUserWithExpand;"
+                                class="user-element-row" [class.example-expanded-row]="expandedElement === element"
+                                (click)="expandedElement = expandedElement === element ? null : element">
+                            </tr>
+                            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="user-detail-row">
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </mat-tab>
+
+            <mat-tab>
+
+                <ng-template mat-tab-label>
+                    <mat-icon class="tab-icon">forum</mat-icon> Teme
+                </ng-template>
+
+                <div class="topic-container">
+                    <div class="topic-element-container">
+
+                        <div class="topic-create-button-container">
+                            <button mat-raised-button (click)="createTopic()" class="topic-create-button">
+                                Kreiraj temu
+                            </button>
+                        </div>
+
+                        <table mat-table [dataSource]="dataSourceTopic" class="mat-elevation-z8">
+
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef class="topic-table-header"> Naziv </th>
+                                <td mat-cell *matCellDef="let element" class="topic-table-row-name">
+                                    <img [src]="element.imageUrl || 'assets/topics/0.png'" alt="Nema slike" width="40"
+                                        height="40" class="topic-image"> <span
+                                        class="topic-name">{{element.name}}</span>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="status">
+                                <th mat-header-cell *matHeaderCellDef class="topic-table-header">Status</th>
+                                <td mat-cell *matCellDef="let element" class="topic-table-row"
+                                    [ngClass]="{'topic-active': element.active, 'topic-archived': !element.active}">
+                                    {{ element.active ? 'AKTIVNO' : 'ARHIVIRANO' }}
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="actions">
+                                <th mat-header-cell *matHeaderCellDef class="topic-table-header">Akcije</th>
+                                <td mat-cell *matCellDef="let element" class="topic-table-row">
+                                    <mat-icon (click)="editTopic(element.id, element.active)"
+                                        class="topic-action-icon-l" matTooltip="Uredi">edit</mat-icon>
+                                    <mat-icon (click)="archiveTopic(element.id, element.active)"
+                                        class="topic-action-icon-r" matTooltip="Arhiviraj">archive</mat-icon>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="columnsToDisplayTopic"></tr>
+                            <tr mat-row *matRowDef="let row; columns: columnsToDisplayTopic;"></tr>
+                        </table>
+
+                    </div>
+                </div>
+
+            </mat-tab>
+
+        </mat-tab-group>
+
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

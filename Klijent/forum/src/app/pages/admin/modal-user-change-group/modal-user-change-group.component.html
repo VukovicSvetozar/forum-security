@@ -1,0 +1,28 @@
+<div class="container">
+
+    <h2 mat-dialog-title class="title">Promjena grupe korisnika</h2>
+
+    <mat-dialog-content>
+        <div>
+            <form [formGroup]="groupForm" class="form-container">
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Grupe</mat-label>
+                    <mat-select formControlName="newGroup">
+                        @for(group of groupNames; track $index){
+                        <mat-option [value]="group">
+                            {{group}}
+                        </mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </div>
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions class="button-container">
+        <button mat-button mat-dialog-close>Odustani</button>
+        <button mat-button cdkFocusInitial (click)="changeUserGroup()" [disabled]="!groupForm.valid">Potvrdi</button>
+    </mat-dialog-actions>
+
+</div>

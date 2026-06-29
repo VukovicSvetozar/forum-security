@@ -1,0 +1,14 @@
+# Server - Kompajlirani kod i lokalni logovi
+Server/.metadata/
+Server/forum/target/
+Server/forum/log/
+
+# Server - Konfiguracija razvojnog okruženja (Eclipse/STS)
+Server/forum/.settings/
+Server/forum/.classpath
+Server/forum/.project
+Server/forum/.factorypath
+
+# Klijent - Privremeni Angular fajlovi i VS Code podešavanja
+Klijent/forum/.angular/
+Klijent/forum/.vscode/

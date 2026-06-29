@@ -1,0 +1,44 @@
+.comment-container {
+    background-color: #ddf5f5;
+}
+
+.title-container {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.title {
+    text-align: center;
+    font-weight: bold;
+    color: #205fa7;
+}
+
+.element-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-field {
+    width: 70%;
+    min-height: 150px;
+}
+
+.content-textarea {
+    width: 100%;
+    min-height: 150px;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}

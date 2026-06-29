@@ -1,0 +1,17 @@
+<div id="avatar-container">
+    <h1 mat-dialog-title>Odaberi avatar</h1>
+    <div mat-dialog-content>
+        <mat-grid-list cols="6" rowHeight="50px">
+            @for(avatar of listAvatars; track $index) {
+            <mat-grid-tile (click)="selectAvatar(avatar)">
+                <img [src]="avatar" alt="Avatar" width="50" height="50"
+                    [ngClass]="{'selected-avatar': avatar === selectedAvatar}">
+            </mat-grid-tile>
+            }
+        </mat-grid-list>
+    </div>
+    <div id="avatar-button" mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="cancel()">Odustani</button>
+        <button mat-raised-button color="primary" (click)="confirm()">Potvrdi</button>
+    </div>
+</div>

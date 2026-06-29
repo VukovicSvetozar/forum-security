@@ -1,0 +1,152 @@
+#container {
+    height: calc(100vh - 64px);
+    background-color: #b8e1e1;
+}
+
+#container>mat-sidenav-content {
+    padding: 20px;
+}
+
+.tab-icon {
+    margin-right: 8px;
+}
+
+.monitoring-container {
+    width: 100%;
+    height: calc(100vh - 160px);
+    margin-top: 40px;
+    display: flex;
+}
+
+.filter-container {
+    width: 27%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-accordion {
+    padding: 10px;
+}
+
+.filter-panel {
+    background-color: #ddf5f5;
+}
+
+.filter-panel-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter-form-field {
+    width: 90%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.filter-button-container {
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: 10px;
+}
+
+.search-message {
+    padding: 10px;
+}
+
+.message-container {
+    width: 73%;
+    margin-top: 12px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.message-element-container {
+    width: 90%;
+}
+
+.message-table-header {
+    background-color: #c0d3e3 !important;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.7px;
+    padding: 16px;
+    width: 33%;
+}
+
+.message-table-row {
+    width: 33%;
+    text-align: center;
+    padding: 16px;
+    background-color: #ddf5f5;
+}
+
+.message-details-icon {
+    cursor: pointer;
+}
+
+.message-details-icon:hover {
+    transform: scale(1.2);
+    color: #007BFF;
+}
+
+.logs-container {
+    width: 100%;
+    height: calc(100vh - 160px);
+    margin-top: 40px;
+    display: flex;
+}
+
+.logs-filter-container {
+    width: 27%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.logs-filter-slide-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.logs-filter-slide-line {
+    width: 100%;
+    display: flex;
+    padding-left: 45px;
+}
+
+.logs-filter-slide-toggle {
+    width: 50%;
+}
+
+.logs-message-table-row {
+    width: 100px;
+    max-width: 100px;
+    text-align: center;
+    padding: 16px;
+    background-color: #ddf5f5;
+    white-space: nowrap;
+}
+
+.logs-message-table-row-big {
+    width: 300px;
+    max-width: 300px;
+    text-align: center;
+    padding: 16px;
+    background-color: #ddf5f5;
+    white-space: nowrap;
+}

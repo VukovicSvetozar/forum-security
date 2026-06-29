@@ -1,0 +1,49 @@
+#container {
+    height: 100vh;
+    background-color: #b9f6f6;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#page-title {
+    font-size: 24px;
+    color: #2196F3;
+    text-align: center;
+    padding-top: 30px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+#login-button-container {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-github-button-container {
+    margin-top: 10px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#link-container {
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}

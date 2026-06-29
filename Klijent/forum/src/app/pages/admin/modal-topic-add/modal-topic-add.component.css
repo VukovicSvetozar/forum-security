@@ -1,0 +1,51 @@
+#topic-container {
+    background-color: #bde5e5;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#title {
+    text-align: center;
+    color: rgb(19, 96, 212);
+}
+
+form {
+    width: 100%;
+}
+
+.name-field-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.name-field {
+    width: 70%;
+}
+
+#title-image {
+    font-style: italic;
+    text-indent: 15px;
+    color: rgb(19, 96, 212);
+}
+
+.topic-image {
+    border-radius: 50%;
+}
+
+.selected-image {
+    transform: scale(1.5);
+}
+
+#topic-button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    border: none;
+    cursor: pointer;
+}

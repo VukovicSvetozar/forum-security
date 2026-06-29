@@ -1,0 +1,55 @@
+<div class="monitoring-container">
+
+    <div class="title-container">
+        <h1 class="title">Poruka o grešci</h1>
+    </div>
+
+    <div class="element-container">
+
+        <mat-dialog-content>
+            @if (errorMessage) {
+            <mat-card>
+                <mat-card-header class="card-header">
+                    <mat-card-title class="card-title">{{errorMessage.status}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="card-content">
+                    <p><span class="error-message-title">Vrijeme: </span> {{errorMessage.time}}</p>
+                    <p><span class="error-message-title">Endpoint: </span> {{errorMessage.requestUrl}}</p>
+                    <p><span class="error-message-title">HTTP metoda: </span> {{errorMessage.method}}</p>
+                    <p><span class="error-message-title">Klijent: </span> {{errorMessage.clientIp}}</p>
+                    <p><span class="error-message-title">Poruke:</span>
+                        @if(errorMessage.messages && getObjectKeys(errorMessage.messages).length > 0){
+                        <br>
+                        @for (key of getObjectKeys(errorMessage.messages); track $index) {
+                        <span class="error-message-key">{{ key }}</span>:
+                        <br>
+                        <span class="error-message-text">{{ errorMessage.messages[key] }} </span>
+                        <br>
+                        }
+                        } @else {
+                        <span>Nema podataka</span>
+                        }
+                    </p>
+                    <p>
+                        <span class="error-message-title">Polja:</span>
+                        @if(errorMessage.fieldErrors && getObjectKeys(errorMessage.fieldErrors).length > 0){
+                        <br>
+                        @for (key of getObjectKeys(errorMessage.fieldErrors); track $index) {
+                        <span class="error-message-key">{{ key }}</span>: {{ errorMessage.fieldErrors[key] }}
+                        }
+                        } @else {
+                        <span>Nema podataka</span>
+                        }
+                    </p>
+                </mat-card-content>
+            </mat-card>
+            }
+        </mat-dialog-content>
+
+        <mat-dialog-actions>
+            <button mat-button mat-dialog-close>Zatvori</button>
+        </mat-dialog-actions>
+
+    </div>
+
+</div>

@@ -1,0 +1,7 @@
+#home-image {
+    width: 100%;
+    height: calc(100vh - 69px);
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}

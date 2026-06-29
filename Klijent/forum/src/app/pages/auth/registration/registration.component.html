@@ -1,0 +1,111 @@
+<div id="container">
+
+    <div id="page-title">
+        Registracija
+    </div>
+
+    <form [formGroup]="registrationForm" (ngSubmit)="registrationUser()">
+
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Korisničko ime</mat-label>
+            <input matInput formControlName="username" placeholder="Vuk" pattern="^[a-zA-Z0-9_]*$" required
+                minlength="3" maxlength="30" (keyup)="checkUsernameAvailability()">
+            <mat-icon matSuffix>account_circle</mat-icon>
+            @if(registrationForm.get('username')?.hasError('required') && registrationForm.get('username')?.touched){
+            <mat-error>
+                Korisničko ime je obavezno!
+            </mat-error>
+            }
+            @if(registrationForm.get('username')?.hasError('pattern') && registrationForm.get('username')?.touched){
+            <mat-error>
+                Korisničko ime ne smije sadržavati specijalne karaktere.
+            </mat-error>
+            }
+            @if(registrationForm.get('username')?.hasError('minlength') && registrationForm.get('username')?.touched){
+            <mat-error>
+                Korisničko ime mora imati najmanje 3 karaktera.
+            </mat-error>
+            }
+            @if(registrationForm.get('username')?.hasError('maxlength') && registrationForm.get('username')?.touched){
+            <mat-error>
+                Korisničko ime može imati najviše 30 karaktera.
+            </mat-error>
+            }
+            @if(registrationForm.get('username')?.hasError('usernameNotAvailable') &&
+            registrationForm.get('username')?.touched){
+            <mat-error>
+                Korisničko ime je već zauzeto!
+            </mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Lozinka</mat-label>
+            <input matInput type="password" formControlName="password" required minlength="8" #passwordInput />
+            <mat-icon matSuffix (click)="changeVisibilityPassword(passwordInput)">
+                {{ passwordView ? 'lock' : 'visibility' }}
+            </mat-icon>
+            @if(registrationForm.get('password')?.hasError('required') && registrationForm.get('password')?.touched){
+            <mat-error>
+                Lozinka je obavezna!
+            </mat-error>
+            }
+            @if(registrationForm.get('password')?.hasError('minlength') && registrationForm.get('password')?.touched){
+            <mat-error>
+                Lozinka mora imati najmanje 8 karaktera.
+            </mat-error>
+            }
+            @if(registrationForm.get('password')?.hasError('pattern') && registrationForm.get('password')?.touched){
+            <mat-error>
+                Lozinka nije u skladu sa sigurnosnim zahtjevima.
+            </mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="sv@gmail.com" required maxlength="100" email
+                (keyup)="checkEmailAvailability()">
+            <mat-icon matSuffix>mail</mat-icon>
+            @if(registrationForm.get('email')?.hasError('required') && registrationForm.get('email')?.touched){
+            <mat-error>
+                Email je obavezan!
+            </mat-error>
+            }
+            @if(registrationForm.get('email')?.hasError('email') && registrationForm.get('email')?.touched){
+            <mat-error>
+                Email nije validan!
+            </mat-error>
+            }
+            @if(registrationForm.get('email')?.hasError('emailNotAvailable') && registrationForm.get('email')?.touched){
+            <mat-error>
+                Email je već zauzet!
+            </mat-error>
+            }
+        </mat-form-field>
+
+        <div id="avatar-container">
+            <div>
+                <span id="avatar-title">Avatar:&nbsp;&nbsp;</span>
+            </div>
+            <div id="avatar-button">
+                <img [src]="avatarUrl" alt="Odabrani Avatar" width="60" height="60">
+                <button mat-raised-button type="button" color="warn" (click)="openAvatarDialog()">Odaberi</button>
+            </div>
+        </div>
+
+        <div id="registration-button-container">
+            <button mat-raised-button color="accent" type="submit" [disabled]="registrationForm.invalid">Registruj
+                se</button>
+        </div>
+
+        <div id="link-container">
+            <a mat-raised-button color="primary" routerLink="../../forum/home"><mat-icon>home</mat-icon>
+                <strong>Početna</strong></a>&nbsp;
+            <a mat-raised-button color="primary" routerLink="../../auth/login"><mat-icon>login</mat-icon>
+                <strong>Prijava</strong></a>
+        </div>
+
+    </form>
+
+</div>

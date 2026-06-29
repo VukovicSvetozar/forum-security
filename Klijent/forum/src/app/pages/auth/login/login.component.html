@@ -1,0 +1,76 @@
+<div id="container">
+
+    <div id="page-title">
+        Prijava
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Korisničko ime</mat-label>
+            <input matInput formControlName="username" placeholder="Vuk" pattern="^[a-zA-Z0-9_]*$" required
+                minlength="3" maxlength="30">
+            <mat-icon matSuffix>account_circle</mat-icon>
+            @if(loginForm.get('username')?.hasError('required') && loginForm.get('username')?.touched){
+            <mat-error>
+                Korisničko ime je obavezno!
+            </mat-error>
+            }
+            @if(loginForm.get('username')?.hasError('minlength') && loginForm.get('username')?.touched){
+            <mat-error>
+                Korisničko ime mora imati najmanje 3 karaktera.
+            </mat-error>
+            }
+            @if(loginForm.get('username')?.hasError('maxlength') && loginForm.get('username')?.touched){
+            <mat-error>
+                Korisničko ime može imati najviše 30 karaktera.
+            </mat-error>
+            }
+            @if(loginForm.get('username')?.hasError('pattern') && loginForm.get('username')?.touched){
+            <mat-error>
+                Korisničko ime ne smije sadržavati specijalne karaktere.
+            </mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Lozinka</mat-label>
+            <input matInput type="password" formControlName="password" required minlength="8" #passwordInput />
+            <mat-icon matSuffix (click)="changeVisibilityPassword(passwordInput)">
+                {{ passwordView ? 'lock' : 'visibility' }}
+            </mat-icon>
+            @if(loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched){
+            <mat-error>
+                Lozinka je obavezna!
+            </mat-error>
+            }
+            @if(loginForm.get('password')?.hasError('minlength') && loginForm.get('password')?.touched){
+            <mat-error>
+                Lozinka mora imati najmanje 8 karaktera.
+            </mat-error>
+            }
+            @if(loginForm.get('password')?.hasError('pattern') && loginForm.get('password')?.touched){
+            <mat-error>
+                Lozinka nije u skladu sa sigurnosnim zahtjevima.
+            </mat-error>
+            }
+        </mat-form-field>
+
+        <div id="login-button-container">
+            <button mat-raised-button color="accent" type="submit" [disabled]="loginForm.invalid">Prijava</button>
+        </div>
+
+        <div id="login-github-button-container">
+            <button mat-raised-button color="accent" (click)="gitHubLogin()">Nastavi sa GitHub</button>
+        </div>
+
+        <div id="link-container">
+            <a mat-raised-button color="primary" routerLink="../../forum/home"><mat-icon>home</mat-icon>
+                <strong>Početna</strong></a>&nbsp;
+            <a mat-raised-button color="primary" routerLink="../../auth/registration"><mat-icon>login</mat-icon>
+                <strong>Registracija</strong></a>
+        </div>
+
+    </form>
+
+</div>

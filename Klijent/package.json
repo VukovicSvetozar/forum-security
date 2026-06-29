@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "chart.js": "^4.4.1",
+    "ngx-cookie-service": "^16.0.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^16.1.8"
+  }
+}
