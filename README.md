@@ -158,98 +158,135 @@ Aplikacija je dostupna na `https://localhost:4200`.
 
 ### Početna stranica
 
-![Početna stranica](Slike/1.png)
+<div align="center">
+  <img src="Slike/1.png" width="500" alt="Početna stranica">&nbsp;
+</div>
 
 ---
 
 ### Prijava — standardna i GitHub OAuth2
 
-![Prijava](Slike/2.png)
+<div align="center">
+  <img src="Slike/2.png" width="400" alt="Prijava">&nbsp;
+</div>
 
 ---
 
 ### Dvo-faktorska autentikacija — unos verifikacionog koda
 
-![2FA verifikacija](Slike/3.png)
+<div align="center">
+  <img src="Slike/3.png" width="400" alt="2FA verifikacija">&nbsp;
+</div>
 
 Validacija unosa — kod mora biti šestocifreni broj:
 
-![2FA validacija](Slike/4.png)
+<div align="center">
+  <img src="Slike/4.png" width="400" alt="2FA validacija">&nbsp;
+</div>
 
 ---
 
 ### Registracija sa validacijom
 
-![Registracija](Slike/5.png)
+<div align="center">
+  <img src="Slike/5.png" width="400" alt="Registracija">&nbsp;
+</div>
 
 ---
 
 ### Forum — lista tema
 
-![Forum teme](Slike/6.png)
+<div align="center">
+  <img src="Slike/6.png" width="550" alt="Forum teme">&nbsp;
+</div>
 
 ---
 
 ### Forum — komentari po temi
 
-![Komentari](Slike/7.png)
+<div align="center">
+  <img src="Slike/7.png" width="550" alt="Komentari">&nbsp;
+</div>
 
 ---
 
 ### Lista članova
 
-![Lista članova](Slike/8.png)
+<div align="center">
+  <img src="Slike/8.png" width="550" alt="Lista članova">&nbsp;
+</div>
 
 ---
 
 ### Administratorski panel — upravljanje korisnicima
 
-![Admin korisnici](Slike/9.png)
+<div align="center">
+  <img src="Slike/9.png" width="550" alt="Admin korisnici">&nbsp;
+</div>
 
 ---
 
+
 ### Promjena permisija korisnika
 
-![Promjena permisija](Slike/10.png)
+<div align="center">
+  <img src="Slike/10.png" width="550" alt="Promjena permisija">&nbsp;
+</div>
 
 ---
 
 ### Suspenzija korisnika
 
-![Suspenzija](Slike/11.png)
+<div align="center">
+  <img src="Slike/11.png" width="550" alt="Suspenzija">&nbsp;
+</div>
 
 ---
 
 ### Upravljanje temama
 
-![Admin teme](Slike/12.png)
+<div align="center">
+  <img src="Slike/12.png" width="550" alt="Admin teme">&nbsp;
+</div>
 
 ---
 
 ### Monitoring — SIEM log grešaka
 
-![SIEM greške](Slike/13.png)
+<div align="center">
+  <img src="Slike/13.png" width="550" alt="SIEM greške">&nbsp;
+</div>
 
 ---
 
 ### Monitoring — detalj greške (WAF detekcija SQL Injection napada)
 
-![Detalj greške](Slike/14.png)
+<div align="center">
+  <img src="Slike/14.png" width="550" alt="Detalj greške">&nbsp;
+</div>
 
 ---
 
 ### Monitoring — aplikativni logovi sa filtriranjem
 
-![Logovi](Slike/15.png)
+<div align="center">
+  <img src="Slike/15.png" width="550" alt="Logovi">&nbsp;
+</div>
 
 ---
 
 ### Korisnički profil — ažuriranje podataka
 
-![Profil](Slike/16.png)
+<div align="center">
+  <img src="Slike/16.png" width="550" alt="Profil">&nbsp;
+</div>
 
 ---
 
 ### Odabir avatara
 
-![Avatar odabir](Slike/17.png)
+<div align="center">
+  <img src="Slike/17.png" width="550" alt="Avatar">&nbsp;
+</div>
+
+---
